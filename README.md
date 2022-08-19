@@ -1,4 +1,4 @@
-# DIY_NAS_config
+# DIY NAS config
 
 - The config uses docker compose with 6 projects.
 - The reused variables are stored in the .env_base file, but some needs to be changed in the yml files.
