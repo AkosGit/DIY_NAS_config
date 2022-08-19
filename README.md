@@ -14,3 +14,10 @@ do
     yes | docker image prune
 done
 ```
+## Projects
+#### Auth
+- vaultwarden: cross platform password manager
+#### Files
+- filebrowser: simple way to view files on your drives, with full controll over files and a user managment system.
+- syncthing: sync files between devices
+- vsftpd: ftp server
