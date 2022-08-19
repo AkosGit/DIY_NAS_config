@@ -21,3 +21,20 @@ done
 - filebrowser: simple way to view files on your drives, with full controll over files and a user managment system.
 - syncthing: sync files between devices
 - vsftpd: ftp server
+#### Media
+- tvheadend: IP tv and can be used with dvb tv cards
+- jellyfin: media server with lots of clients, can be used with tv shows, movies, and even music
+- navidrome: music server, with a nice pwa, and its compatible with subsonic api and clients
+- photoprism: diy google photos, with face detection, search by location and much more
+- audiobookshelf: audio drama, audiobook and podcast server
+#### Monitor
+- crontab-ui: view and edit crontab tasks in web ui
+- portainer-ce: docker container manager
+- uptime-kuma: check services, sites if they are up or not. Also you can recive notfications from diferent sources.
+- netdata: monitor system resources real-time in a nice web ui
+#### Networking
+- ddns-updater: update domains ip address
+- caddy: web server, i use it fro reverse proxy to handle my domain and ssl
+- wg-easy: wireguard container, with easy setup and web mangemt interface
+#### Torrent
+- sonarr: 
