@@ -1,0 +1,47 @@
+services:
+  filebrowser:
+    restart: always
+    volumes:
+      - '${B_PATH}:/srv/config'
+      - '${HDD1}:/srv/hdd'
+      - '${B_PATH}/filebrowser/filebrowser.db:/database/filebrowser.db'
+      - '${B_PATH}/filebrowser/settings.json:/config/settings.json'
+    environment:
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - '9999:80'
+    image: 'filebrowser/filebrowser:s6'
+  syncthing:
+    image: ghcr.io/linuxserver/syncthing
+    container_name: syncthing
+    hostname: sync.${B_DOMAIN} #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ${B_PATH}/syncthing/config:/config
+      - ${HDD1}/Dokumentumok:/doc_hdd
+      - ${DOCUMENTS}:/doc_ssd
+    ports:
+      - 8384:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+    restart: unless-stopped
+  vsftpd:
+    container_name: vsftpd
+    image: bfren/ftps:latest
+    restart: always
+    ports:
+      - "21:21"
+      - "990:990"
+      - "18700-18710:18700-18710"
+    volumes:
+      - ${HDD1}:/files
+    environment:
+      - FTPS_USER=${B_USER}
+      - FTPS_PASS=pass
+      - FTPS_EXTERNAL_URI=${B_DOMAIN}
+

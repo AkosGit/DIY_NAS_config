@@ -1,0 +1,49 @@
+version: "2.1"
+services:
+  dynamic-dns:
+    image: qmcgaw/ddns-updater
+    container_name: dynamic-dns
+    restart: unless-stopped
+    privileged: true
+    volumes:
+      - ${B_PATH}/dns:/updater/data
+    ports:
+      - 8400:8000
+  caddy:
+    container_name: Caddy
+    image: ghcr.io/greenpau/authp:latest
+    restart: always
+    ports:
+      - 443:443/tcp
+      - 80:80/tcp
+    volumes:
+      - ${B_PATH}/caddy/caddy_config:/config:rw
+      - ${B_PATH}/caddy/site:/srv:rw
+      - ${B_PATH}/caddy/caddy_data:/data:rw
+      - ${B_PATH}/caddy/Caddyfile:/etc/caddy/Caddyfile:rw
+  wireguard:
+    environment:
+      # Change this to your host's public address
+      - WG_HOST=connect.${B_DOMAIN}
+      - PASSWORD=${PASSWORD}
+      # Optional:
+      # - PASSWORD=foobar123
+      # - WG_PORT=51820
+      # - WG_DEFAULT_ADDRESS=10.8.0.x
+      # - WG_DEFAULT_DNS=1.1.1.1
+      # - WG_ALLOWED_IPS=192.168.15.0/24, 10.0.1.0/24
+
+    image: weejewel/wg-easy
+    container_name: wg-easy
+    volumes:
+      - ${B_PATH}/wireguard:/etc/wireguard
+    ports:
+      - "51820:51820/udp"
+      - "8080:51821/tcp"
+    restart: always
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv4.conf.all.src_valid_mark=1

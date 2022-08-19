@@ -1,0 +1,45 @@
+version: "2.1"
+services:
+  crontab-ui:
+    image: alseambusher/crontab-ui
+    network_mode: bridge
+    ports:
+      - 4444:8000
+  portainer-ce:
+    ports:
+       - '8000:8000'
+       - '9000:9000'
+    container_name: portainer
+    restart: always
+    volumes:
+       - '/var/run/docker.sock:/var/run/docker.sock'
+       - '${B_PATH}/portainer:/data'
+    image: portainer/portainer-ce
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    volumes:
+      - ${B_PATH}/uptime:/app/data
+    ports:
+      - 3001:3001  # <Host Port>:<Container Port>
+    restart: always
+  netdata:
+    image: netdata/netdata
+    container_name: netdata
+    hostname: netdata.${B_DOMAIN}# set to fqdn of host
+    ports:
+      - 19999:19999
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - ${B_PATH}/netdata/config:/etc/netdata
+      - ${B_PATH}/netdata/lib:/var/lib/netdata
+      - ${B_PATH}/netdata/cache:/var/cache/netdata
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro

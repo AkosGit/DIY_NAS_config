@@ -1,0 +1,10 @@
+version: "2.1"
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    restart: always
+    volumes:
+      - '${B_PATH}/vaultwarden/:/data/'
+    ports:
+      - '7500:80'
+    image: 'vaultwarden/server:latest'

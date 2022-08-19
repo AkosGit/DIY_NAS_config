@@ -1,0 +1,78 @@
+version: "2.1"
+services:
+  sonarr:
+    image: ghcr.io/linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ${B_PATH}/sonarr:/config
+      - ${HDD1}/Sorozatok:/tv
+      - ${DOWNLOADS}:/downloads
+    ports:
+      - 8989:8989
+    restart: always
+  radarr:
+    image: lscr.io/linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ${B_PATH}/radarr:/config
+      - ${HDD1}/Filmek:/movies #optional
+      - ${DOWNLOADS}:/downloads #optional
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+  bazarr:
+    image: lscr.io/linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ${B_PATH}/bazarr:/config
+      - ${HDD1}/Filmek:/movies #optional
+      - ${HDD1}/Sorozatok:/tv #optional
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+  prowlarr:
+    image: ghcr.io/linuxserver/prowlarr:develop
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ${B_PATH}/prowlarr:/config
+    ports:
+      - 9696:9696
+    restart: always
+  qbittorrent: #login admin/adminadmin
+    image: ghcr.io/hotio/qbittorrent
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - UMASK=002  
+    volumes:
+      - ${B_PATH}/qbit:/config
+      - ${DOWNLOADS}:/downloads
+      - ${HDD1}/Sorozatok:/sorozat
+      - ${HDD1}/Filmek:/film
+      - ${HDD1}/Audio/Drama:/drama
+      - ${HDD1}/Audio/Music:/music
+      - ${HDD1}/:/hdd
+      - ${HOME}/:/home
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 9091:8080
+    restart: always
