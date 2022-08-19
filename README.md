@@ -3,7 +3,7 @@
 - The config uses docker compose with 6 projects.
 - The reused variables are stored in the .env_base file, but some needs to be changed in the yml files.
 - All the configurations are stored in one directory defined in the B_PATH variable.
-- A litle bit of script that will bring the projects up and can be used to update the projects.
+- A little bit of script that will bring the projects up and can be used to update the projects.
 ```bash                                                                   
 #/bin/bash
 arr=( "auth" "media" "monitor" "networking" "torrent" "files")
