@@ -38,3 +38,7 @@ done
 - wg-easy: wireguard container, with easy setup and web mangemt interface
 #### Torrent
 - sonarr: 
+- radarr:
+- bazarr:
+- prowlarr:
+- qbittorrent
