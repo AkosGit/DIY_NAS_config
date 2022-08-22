@@ -18,7 +18,7 @@ done
 #### Auth
 - vaultwarden: cross platform password manager
 #### Files
-- filebrowser: simple way to view files on your drives, with full controll over files and a user managment system.
+- filebrowser: simple way to view files on your drives, with full control over files and a user management system.
 - syncthing: sync files between devices
 - vsftpd: ftp server
 #### Media
@@ -30,15 +30,15 @@ done
 #### Monitor
 - crontab-ui: view and edit crontab tasks in web ui
 - portainer-ce: docker container manager
-- uptime-kuma: check services, sites if they are up or not. Also you can recive notfications from diferent sources.
+- uptime-kuma: check services, sites if they are up or not. Also you can receive notifications from different sources.
 - netdata: monitor system resources real-time in a nice web ui
 #### Networking
 - ddns-updater: update domains ip address
 - caddy: web server, i use it fro reverse proxy to handle my domain and ssl
-- wg-easy: wireguard container, with easy setup and web mangemt interface
+- wg-easy: wireguard container, with easy setup and web management interface
 #### Torrent
-- sonarr: 
-- radarr:
-- bazarr:
-- prowlarr:
-- qbittorrent
+- sonarr: monitors new episodes of tv shows, and can download them using usenet or torrent 
+- radarr: same as sonarr just for movies
+- bazarr: subtitle manager for sonarr and radarr
+- prowlarr: indexer sonarr and radarr with 500+ sites
+- qbittorrent: web torrent client with custom pwa ui
