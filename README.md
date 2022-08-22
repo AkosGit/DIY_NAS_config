@@ -30,7 +30,7 @@ done
 #### Monitor
 - crontab-ui: view and edit crontab tasks in web ui
 - portainer-ce: docker container manager
-- uptime-kuma: check services, sites if they are up or not. Also you can receive notifications from different sources.
+- uptime-kuma: check services, sites if they are up or not, also you can receive notifications from different sources
 - netdata: monitor system resources real-time in a nice web ui
 #### Networking
 - ddns-updater: update domains ip address
