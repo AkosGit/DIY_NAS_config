@@ -1,7 +1,7 @@
 #/bin/bash
 # This script will save the md file to a repo in the Notes folder categorized by the first tag in a note.
-# The images will be ripped and saved and categorized by tags in Notes/Images
-# Script uses wget, Hedgedoc cli
+# Notes are ripped from user history by Hedgedoc cli
+# The images will be ripped using wget and saved and categorized by tags in Notes/Images and the image references will be replaced
 repo="REPO NAME"
 eval "rm -rf  $repo"
 eval "git clone YOUR GIT PROFILE/$repo"
